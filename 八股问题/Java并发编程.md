@@ -459,3 +459,69 @@
 **专业回答：** `Exchanger` 是用于两个线程之间交换数据的并发工具。一个线程调用 `exchange()` 后会等待另一个线程也调用该方法，两个线程到达同步点后交换各自数据并继续执行。
 
 **记忆版：** Exchanger = 两个线程到点换数据。
+
+## 58. 两种创建并启动线程的流程和区别；线程同步的几种方式及区别？
+
+**通俗理解：** 创建线程常见有两种基础方式：继承 `Thread`，或者实现 `Runnable`。同步就是多个线程操作共享数据时，加规则防止数据被改乱。
+
+**方式一：继承 `Thread`**
+
+```java
+class MyThread extends Thread {
+    @Override
+    public void run() {
+        System.out.println("线程执行任务");
+    }
+}
+
+new MyThread().start();
+```
+
+**流程：**
+
+1. 定义类继承 `Thread`。
+2. 重写 `run()` 方法。
+3. 创建线程对象。
+4. 调用 `start()` 启动线程。
+
+**方式二：实现 `Runnable`**
+
+```java
+class MyTask implements Runnable {
+    @Override
+    public void run() {
+        System.out.println("线程执行任务");
+    }
+}
+
+new Thread(new MyTask()).start();
+```
+
+**流程：**
+
+1. 定义类实现 `Runnable`。
+2. 重写 `run()` 方法。
+3. 把任务对象传给 `Thread`。
+4. 调用 `start()` 启动线程。
+
+**两种方式区别：**
+
+| 方式 | 优点 | 缺点 |
+| --- | --- | --- |
+| 继承 `Thread` | 写法直观，线程和任务放在一起 | Java 单继承，继承了 `Thread` 后不能再继承其他类 |
+| 实现 `Runnable` | 任务和线程分离，更灵活；还能继承其他类；多个线程可共享同一个任务对象 | 不能直接返回结果，异常处理能力弱于 `Callable` |
+
+**线程同步方式：**
+
+| 同步方式 | 简单格式 | 特点 |
+| --- | --- | --- |
+| `synchronized` 方法 | `public synchronized void test() {}` | 使用简单，自动释放锁，锁粒度通常较粗 |
+| `synchronized` 代码块 | `synchronized (lock) {}` | 可指定锁对象，锁范围更小，推荐优先掌握 |
+| `Lock` / `ReentrantLock` | `lock.lock(); try {} finally { lock.unlock(); }` | 手动加锁释放，支持可中断、超时、公平锁等高级能力 |
+| `volatile` | `private volatile boolean flag;` | 保证可见性和禁止重排序，不保证复合操作原子性 |
+| 原子类 | `AtomicInteger count = new AtomicInteger();` | 基于 CAS，适合简单原子更新 |
+| 线程安全集合 | `ConcurrentHashMap`、`CopyOnWriteArrayList` | 用现成并发容器减少手写锁 |
+
+**专业回答：** 继承 `Thread` 和实现 `Runnable` 本质上都是把任务逻辑放进 `run()`，真正启动线程必须调用 `start()`。实际开发更推荐 `Runnable`、`Callable` 或线程池，因为任务和线程生命周期解耦。线程同步可以通过内置锁、显式锁、`volatile`、原子类、并发集合等实现，应根据是否需要原子性、可见性、锁粒度、是否需要返回结果等选择。
+
+**记忆版：** 创建线程：继承 `Thread` 或实现 `Runnable`，启动都靠 `start()`；同步方式：锁、`volatile`、原子类、并发容器。
