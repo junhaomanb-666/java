@@ -56,6 +56,7 @@
 - 2026-07-30：已补充 Java GC、`Comparable`/`Comparator`、`Iterable`/`Iterator`、集合框架总览、线程创建与同步方式。
 
 - 2026-07-31：已补充本批去重后的新增题：创建索引原则、SQL 生命周期、CHAR/VARCHAR 更新差异、InnoDB 四大特性、游标、主键类型、Java 构造方法、抽象类、对象引用、内部类、`this/super`、静态访问限制、返回值、数据类型、`final`、访问修饰符、反射获取 `Class` 的三种方法。
+- 2026-08-01：已根据 JavaGuide JVM GC 全文重整 `JVM.md`，替换原有简版 GC 内容，补充堆结构、对象分配、存活判断、引用类型、GC 算法、收集器、Full GC 排查和面试速记表。
 ## 单题整理格式
 
 ```text
