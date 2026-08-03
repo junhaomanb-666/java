@@ -117,3 +117,18 @@ public class BizException extends RuntimeException {
 ```
 
 **记忆版：** 业务异常通常继承 `RuntimeException`，并提供带消息的构造方法。
+
+## 11. NullPointerException 常见产生场景有哪些？
+
+**通俗理解：** 空指针就是“对象还没有真正指向东西，你却拿它去调用方法或取属性”。最常见原因是没有判空。
+
+**专业回答：** `NullPointerException` 常见场景包括：对象未初始化就调用属性或方法；方法返回值可能为 `null` 但调用方未判断；数组、集合对象本身为 `null` 却直接访问；自动拆箱时包装类型为 `null`；链式调用中间对象为 `null`；从 Map 获取不存在的 key 后直接使用返回值。
+
+**示例：**
+
+```java
+Integer count = null;
+int value = count; // 自动拆箱触发 NullPointerException
+```
+
+**记忆版：** 空对象调方法、空返回不判空、空包装类拆箱，是 NPE 高频来源。

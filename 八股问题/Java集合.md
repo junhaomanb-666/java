@@ -13,7 +13,7 @@
 
 ## 2. ArrayList 和 LinkedList 的区别？
 
-**答案：** `ArrayList` 基于动态数组，随机访问快，时间复杂度为 `O(1)`；插入删除相对慢。`LinkedList` 基于双向链表，插入删除快，随机访问慢，时间复杂度为 `O(n)`。
+**答案：** `ArrayList` 基于动态数组，随机访问快，时间复杂度为 `O(1)`；插入删除相对慢。`LinkedList` 基于双向链表，插入删除快（删除或插入时，只需要修改附近节点的指针，不需要搬动其他元素），随机访问慢，时间复杂度为 `O(n)`。
 
 **核心记忆：**
 
@@ -151,3 +151,19 @@ while (iterator.hasNext()) {
 | `ConcurrentHashMap` | 数组 + 链表 + 红黑树 + CAS/synchronized | 线程安全，并发性能较好 | 并发场景下的 Map |
 
 **记忆版：** List 管顺序，Set 管去重，Map 管键值；数组查得快，链表增删快，红黑树能排序，哈希表查找快。
+
+## 14. HashMap 为什么线程不安全？
+
+**通俗理解：** `HashMap` 不是给多线程同时写准备的。多个线程一起 `put` 或扩容时，就可能互相覆盖、丢数据，老版本甚至可能出现链表成环。
+
+**专业回答：** `HashMap` 没有同步控制，多线程并发修改时可能出现数据覆盖、元素丢失、结构不一致等问题。JDK 7 中扩容迁移使用头插法，并发场景下可能导致链表成环，引发查询死循环；JDK 8 改为尾插法并优化扩容，降低了成环风险，但并发写入仍可能出现数据覆盖和状态不一致。因此多线程场景应使用 `ConcurrentHashMap`。
+
+**记忆版：** `HashMap` 并发写会乱；多线程用 `ConcurrentHashMap`。
+
+## 15. fail-fast 和 fail-safe 有什么区别？
+
+**通俗理解：** fail-fast 是“发现你边遍历边乱改，立刻报错”；fail-safe 是“遍历时看旧副本，你改你的，我不报错”。
+
+**专业回答：** fail-fast 常见于 `ArrayList`、`HashMap` 等集合。迭代器创建后会记录 `modCount`，遍历过程中如果集合结构被非迭代器方式修改，可能抛出 `ConcurrentModificationException`。fail-safe 常见于 `CopyOnWriteArrayList` 等并发集合，迭代时基于快照或副本遍历，即使原集合被修改，也不会抛并发修改异常，但可能读到的不是最新数据。
+
+**记忆版：** fail-fast 看 `modCount`，改了就报错；fail-safe 看副本，不报错但可能旧数据。

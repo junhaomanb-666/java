@@ -60,6 +60,7 @@
 - 2026-07-31：已补充本批去重后的新增题：创建索引原则、SQL 生命周期、CHAR/VARCHAR 更新差异、InnoDB 四大特性、游标、主键类型、Java 构造方法、抽象类、对象引用、内部类、`this/super`、静态访问限制、返回值、数据类型、`final`、访问修饰符、反射获取 `Class` 的三种方法。
 - 2026-08-01：已根据 JavaGuide JVM GC 全文重整 `JVM.md`，替换原有简版 GC 内容，补充堆结构、对象分配、存活判断、引用类型、GC 算法、收集器、Full GC 排查和面试速记表。
 - 2026-08-03：已根据 `05-Spring MVC面试题.pdf` 和 `06-Spring面试题-重点.pdf` 新增 `SpringMVC.md`、`Spring.md`，去重整理 Spring MVC 28 题、Spring 48 题。
+- 2026-08-03：已检查 `Java核心基础+MySQL+Mybatis+Spring高频面试题（35道含答案）.pdf` 和 `Java基础+MySQL高频面试题（含详细答案解析）.pdf`；多数内容已覆盖，去重后补充构造方法不能重写、NPE 场景、HashMap 线程不安全、fail-fast/fail-safe、MVCC、Spring AOP 应用场景等。
 ## 单题整理格式
 
 ```text
