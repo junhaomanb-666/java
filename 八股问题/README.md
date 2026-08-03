@@ -16,6 +16,8 @@
 | [Java并发编程.md](Java并发编程.md) | 并发基础、线程通信、锁、AQS、线程池、并发容器 |
 | [JavaIO.md](JavaIO.md) | IO 分类、字节流、字符流、缓冲流、序列化、NIO |
 | [Java面向对象.md](Java面向对象.md) | 封装、继承、多态、类与对象、接口和抽象类 |
+| [Spring.md](Spring.md) | Spring 概述、IoC/DI、Bean、注解、数据访问、事务、AOP |
+| [SpringMVC.md](SpringMVC.md) | Spring MVC 核心组件、执行流程、注解、参数绑定、视图、异常、拦截器 |
 | [MyBatis.md](MyBatis.md) | MyBatis 简介、工作原理、映射器、动态 SQL、插件、缓存 |
 | [MySQL.md](MySQL.md) | 存储引擎、事务、索引、SQL 安全、表操作 |
 | [数据库面试详解.md](数据库面试详解.md) | 数据库高频面试题详解、索引、事务、锁、SQL、范式 |
@@ -57,6 +59,7 @@
 
 - 2026-07-31：已补充本批去重后的新增题：创建索引原则、SQL 生命周期、CHAR/VARCHAR 更新差异、InnoDB 四大特性、游标、主键类型、Java 构造方法、抽象类、对象引用、内部类、`this/super`、静态访问限制、返回值、数据类型、`final`、访问修饰符、反射获取 `Class` 的三种方法。
 - 2026-08-01：已根据 JavaGuide JVM GC 全文重整 `JVM.md`，替换原有简版 GC 内容，补充堆结构、对象分配、存活判断、引用类型、GC 算法、收集器、Full GC 排查和面试速记表。
+- 2026-08-03：已根据 `05-Spring MVC面试题.pdf` 和 `06-Spring面试题-重点.pdf` 新增 `SpringMVC.md`、`Spring.md`，去重整理 Spring MVC 28 题、Spring 48 题。
 ## 单题整理格式
 
 ```text
